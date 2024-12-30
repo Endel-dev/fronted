@@ -33,6 +33,8 @@ class Loginscreen_state extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     return Consumer<LoginProvider>(builder: (context1, login, child) {
+      login.passwordController.text = 'ulkadesai05';
+      login.emailController.text = 'ulka725@gmail.com';
       return StatefulWrapper(
         //load page
         onInit: () => Future.delayed(const Duration(milliseconds: 10))
@@ -71,8 +73,43 @@ class Loginscreen_state extends State<LoginScreen>
                                           else
                                           {
                                             sign_in_method(login.email_v == true?login.emailController.text:login.emailController.text,login.passwordController.text);
-                                            _onLoading2();
-                                            login.onLogin(context);
+                                            showDialog(
+                                              context: context,
+                                              barrierDismissible: false,
+                                              builder: (BuildContext context) {
+                                                new Future.delayed(new Duration(seconds: 5), () {
+                                                  Navigator.of(context).pop();
+                                                  if (sign_in_success == true ) {
+                                                    if (userrole_dispaly == "parent" || userrole_dispaly == "guardian") {
+                                                      login.onLogin(context);
+                                                      Fluttertoast.showToast(msg: "Login Successful",
+                                                          backgroundColor: Colors.blue,textColor: Colors.white);
+
+                                                    }
+                                                    if (userrole_dispaly ==  'child') {
+                                                      //  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ChildHomeScreen()));
+                                                    }
+                                                  }
+                                                  else
+                                                  {
+                                                    //  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ErrorScreen(errorMessage: "Login Failed! Try Again")));
+                                                  }
+                                                  setState(() {});
+                                                });
+                                                return AlertDialog(
+                                                  backgroundColor: Colors.blueGrey,
+                                                  title: Container(
+                                                    height: 100,
+                                                    width: 100,
+                                                    child: new Center(
+                                                        child: CircularProgressIndicator()
+                                                    ),
+                                                  ),
+                                                );
+
+                                              },
+                                            );
+
                                           }
                                         }),
                                     const VSpace(Sizes.s30),

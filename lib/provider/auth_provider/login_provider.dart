@@ -49,7 +49,6 @@ class LoginProvider with ChangeNotifier {
     notifyListeners();
     onBack();
   }
-
 //onBack clear
   onBack() {
     emailController.text = "";
