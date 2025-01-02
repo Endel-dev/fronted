@@ -51,7 +51,7 @@ class AppRoute {
     routeName.splash: (p0) => const SplashScreen(),
     routeName.onBoarding: (p0) => const OnBoardingScreen(),
     routeName.login: (p0) => const LoginScreen(),
-    routeName.registration: (p0) => const RegistrationPage(),
+    routeName.registration: (p0) =>  RegistrationPage(),
     routeName.forgot: (p0) => const ForgotScreen(),
     routeName.changePassword: (p0) => const CreatePassword(),
     routeName.otpVerify: (p0) => const OTPScreen(),

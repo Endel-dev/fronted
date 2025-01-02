@@ -30,16 +30,17 @@ class CommonWidget {
       color: appColor(context).appTheme.searchBackground);
 
   //login and registration comman text
-  Column commonTextLoginRegistration(context) =>
+  Column commonTextLoginRegistration(context,isLogin) =>
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         VSpace(MediaQuery.of(context).size.height * 0.22),
-        Text(language(context, appFonts.letsYou),
+        Text(language(context,isLogin? "Welcome Back !" : "Create a new account !"),
             style: TextStyle(
                 fontFamily: 'Optima LT',
                 color: appColor(context).appTheme.whiteColor,
                 fontSize: FontSizes.f22)),
         const VSpace(Sizes.s10),
-        CommonTextLayout(text: language(context, appFonts.letsYouOne)),
+        CommonTextLayout(text: language(context, isLogin? "Enter your credentials to log in." :
+        "Fill in your details to create a new account")),
         const VSpace(Sizes.s30)
       ]);
 

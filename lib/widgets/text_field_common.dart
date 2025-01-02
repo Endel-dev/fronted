@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:piggypaisa/common/common_path_list.dart';
 import 'package:piggypaisa/widgets/common_widgets.dart';
 
@@ -7,6 +8,7 @@ import '../config.dart';
 class TextFieldCommon extends StatelessWidget {
   final String hintText;
   final FormFieldValidator<String>? validator;
+  final List<TextInputFormatter>? inputFormatters;
   final TextEditingController? controller;
   final Widget? suffixIcon, prefixIcon;
   final Color? fillColor;
@@ -23,10 +25,14 @@ class TextFieldCommon extends StatelessWidget {
   final double? width;
   final double? height, textFieldHeight;
   final Color? leftBorderColor;
+  final bool readOnly;
+  final VoidCallback? onTap;
+  final void Function(String)? onChange;
 
   const TextFieldCommon({
     Key? key,
     required this.hintText,
+    this.inputFormatters,
     this.validator,
     this.controller,
     this.suffixIcon,
@@ -49,6 +55,9 @@ class TextFieldCommon extends StatelessWidget {
     this.height,
     this.leftBorderColor,
     this.textFieldHeight,
+    this.readOnly = false,
+    this.onTap,
+    this.onChange
   }) : super(key: key);
 
   @override
@@ -61,6 +70,7 @@ class TextFieldCommon extends StatelessWidget {
       ),
       Expanded(
           child: TextFormField(
+              onChanged:onChanged,
               maxLines: maxLines ?? 1,
               style: appCss.dmPoppinsMedium14.textColor(
                 appColor(context).appTheme.txtTransparentColor,
@@ -71,9 +81,11 @@ class TextFieldCommon extends StatelessWidget {
               keyboardType: keyboardType,
               validator: validator,
               controller: controller,
-              onChanged: onChanged,
               minLines: minLines,
               maxLength: maxLength,
+              readOnly: readOnly,
+              onTap: onTap,
+              inputFormatters:inputFormatters,
               //common input decoration
               decoration: CommonWidget().textfieldInputDecoration(
                   counterText,

@@ -26,35 +26,37 @@ class CreatePassword extends StatelessWidget {
         onInit: () => Future.delayed(const Duration(milliseconds: 10))
             .then((_) => changepassword.onReady(context)),
         child: Scaffold(
-            backgroundColor: appColor(context).appTheme.primaryColor,
-            body: SafeArea(
-                child: SingleChildScrollView(
-                    child: Form(
-                        key: changepassword.changePasswordKey,
-                        child: Stack(children: [
-                          Image.asset(imageAssets.background),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                VSpace(
-                                    MediaQuery.of(context).size.height * 0.23),
-                                Text(
-                                    language(
-                                        context, appFonts.createNewPassword),
-                                    style: appCss.dmPoppinsSemiBold22.textColor(
-                                        appColor(context).appTheme.whiteColor)),
-                                const VSpace(Sizes.s30),
-                                //password text field
-                                const CreatePasswordTextField(),
-                                const VSpace(Sizes.s45),
-                                //changepassword button click event
-                                ButtonCommon(
-                                    title: language(
-                                        context, appFonts.resetPassword),
-                                    onTap: () => changepassword
-                                        .onChangePassword(context)),
-                              ]).paddingSymmetric(horizontal: Insets.i20)
-                        ]))))),
+          backgroundColor: appColor(context).appTheme.primaryColor,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Form(
+                key: changepassword.changePasswordKey,
+                child: Stack(
+                  children: [
+                    Image.asset(imageAssets.background),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          VSpace(MediaQuery.of(context).size.height * 0.23),
+                          Text(language(context, appFonts.createNewPassword),
+                              style: appCss.dmPoppinsSemiBold22.textColor(
+                                  appColor(context).appTheme.whiteColor)),
+                          const VSpace(Sizes.s30),
+                          //password text field
+                          const CreatePasswordTextField(),
+                          const VSpace(Sizes.s45),
+                          //changepassword button click event
+                          ButtonCommon(
+                              title: language(context, appFonts.resetPassword),
+                              onTap: () =>
+                                  changepassword.onChangePassword(context)),
+                        ]).paddingSymmetric(horizontal: Insets.i20)
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
       ));
     });
   }

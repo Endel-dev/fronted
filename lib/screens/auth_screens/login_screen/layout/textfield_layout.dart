@@ -18,11 +18,9 @@ class TextFieldLayout extends StatefulWidget {
   State<StatefulWidget> createState() {
     return TextFieldLayout_state();
   }
-
-
 }
-class TextFieldLayout_state extends State<TextFieldLayout>
-{
+
+class TextFieldLayout_state extends State<TextFieldLayout> {
   @override
   Widget build(BuildContext context) {
     return Consumer<LoginProvider>(builder: (context1, login, child) {
@@ -48,8 +46,7 @@ class TextFieldLayout_state extends State<TextFieldLayout>
                     login.role = 'Child';
                   });
                   login.email_v = false;
-                  login.usernaem =true;
-
+                  login.usernaem = true;
                 },
                 selectedColor: Colors.yellow,
               ),
@@ -63,7 +60,6 @@ class TextFieldLayout_state extends State<TextFieldLayout>
                   });
                   login.email_v = true;
                   login.usernaem = false;
-
                 },
                 selectedColor: Colors.yellow,
               ),
@@ -80,9 +76,10 @@ class TextFieldLayout_state extends State<TextFieldLayout>
             controller: login.emailController,
             hintText: language(context, appFonts.hintEmail),
             prefixIcon:
-            SvgPicture.asset(svgAssets.iconEmail, fit: BoxFit.scaleDown),
+                SvgPicture.asset(svgAssets.iconEmail, fit: BoxFit.scaleDown),
             /*validator: (value) =>
-                  Validation().emailValidation(context, value)*/),
+                  Validation().emailValidation(context, value)*/
+          ),
           const VSpace(Sizes.s15),
           //text layout
           CommonTextLayout(
@@ -96,12 +93,14 @@ class TextFieldLayout_state extends State<TextFieldLayout>
             hintText: language(context, appFonts.hintPassword),
             obscureText: login.isNewPassword,
             prefixIcon:
-            SvgPicture.asset(svgAssets.iconLock, fit: BoxFit.scaleDown),
+                SvgPicture.asset(svgAssets.iconLock, fit: BoxFit.scaleDown),
             suffixIcon: CommonWidget()
-                .passwordSVG(login.isNewPassword, svgAssets.iconHide,
-                svgAssets.iconEye)
-                .inkWell(onTap: () => login.newPasswordSeenTap()),
-            /*validator: (value) => validation.passValidation(context, value)*/),
+                .passwordSVG(
+                    login.isNewPassword, svgAssets.iconHide, svgAssets.iconEye)
+                .inkWell(
+                    onTap: () => login
+                        .newPasswordSeenTap()), /*validator: (value) => validation.passValidation(context, value)*/
+          ),
           const VSpace(Sizes.s15),
           //forgot link and remember me layout
           // const ForgotLayout()
