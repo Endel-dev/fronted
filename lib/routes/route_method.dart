@@ -48,7 +48,7 @@ import '../widgets/common_filter/furniture_filter_layout.dart';
 
 class AppRoute {
   Map<String, Widget Function(BuildContext)> route = {
-    routeName.splash: (p0) => const SplashScreen(),
+    // routeName.splash: (p0) => const SplashScreen(),
     routeName.onBoarding: (p0) => const OnBoardingScreen(),
     routeName.login: (p0) => const LoginScreen(),
     routeName.registration: (p0) =>  RegistrationPage(),

@@ -125,106 +125,106 @@ class RegistrationPage_state extends State<RegistrationPage> {
                           Column(children: [
                             // VSpace(MediaQuery.cof(context).size.height * 0.055),
                             //registration click event
-                            ButtonCommon(
-                                title: language(context, appFonts.signUp),
-                                onTap: () async {
-                                  if (registration.registrationKey.currentState!
-                                      .validate()) {
-
-                                    // setState(() {
-                                    //   isLoading = true; // Set loading state to true
-                                    // });
-
-
-                                    final taskData = {
-                                      "email":
-                                          "${registration.emailController.text}",
-                                      "password":
-                                          "${registration.passwordController.text}",
-                                      "name":
-                                          "${registration.firstNameController.text}+${registration.lastNameController.text}",
-                                      "dob":
-                                          "${registration.dobController.text}",
-                                      "gender": registration.gender,
-                                      "role": "parent",
-                                      "phoneNumber":
-                                          "${registration.phoneNumberController.text}",
-                                      "address1":
-                                          "${registration.addLine1Controller.text}",
-                                      "address2":
-                                          "${registration.addLin2Controller.text}",
-                                      "address3":
-                                          "${registration.addLin2Controller.text}",
-                                      "city":
-                                          "${registration.cityController.text}",
-                                      "state":
-                                          "${registration.stateController.text}",
-                                      "pinCode":
-                                          "${registration.pincodeController.text}",
-                                      "firstName":
-                                          "${registration.firstNameController.text}",
-                                      "lastName":
-                                          "${registration.lastNameController.text}",
-                                    };
-                                    await sign_up_method(taskData);
-
-                                    // setState(() {
-                                    //   isLoading = false; // Set loading state to false after API call
-                                    // });
-
-                                    showDialog(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (BuildContext context) {
-                                        Future.delayed(Duration(seconds: 1),
-                                            () {
-                                          Navigator.of(context).pop();
-                                          if (sign_up_success == true) {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        EmailSentScreen()));
-                                          } else {
-                                            Fluttertoast.showToast(
-                                                msg: "Sign Up Failed",
-                                                backgroundColor: Colors.red,
-                                                textColor: Colors.white);
-                                          }
-                                          setState(() {});
-                                        });
-                                        return AlertDialog(
-                                            backgroundColor: Colors.yellow,
-                                            title: Container(
-                                                height: 100,
-                                                width: 100,
-                                                child: new Center(
-                                                    child:
-                                                        CircularPercentIndicator(
-                                                  radius: 15.0,
-                                                ))));
-
-                                        // Add your playful GIF here                      height: 100,                    ),                    SizedBox(height: 20),                    Text(                      'Loading, please wait...',                      style: TextStyle(                        fontSize: 18,                        fontWeight: FontWeight.bold,                        color: Colors.blue.shade700,                      ),                    ),                    SizedBox(height: 10),                    CircularProgressIndicator(                      valueColor: AlwaysStoppedAnimation<Color>(Colors.orange.shade400),                      strokeWidth: 6,                    ),                  ],                ),              ),          ),      );
-                                      },
-                                    );
-                                  } else {
-
-                                    Fluttertoast.showToast(
-                                        msg: "Please fill the required fields",
-                                        backgroundColor: Colors.red,
-                                        textColor: Colors.white);
-                                  }
-
-                                  const VSpace(Sizes.s30);
-                                  Image.asset(imageAssets.oR);
-                                  const VSpace(Sizes.s30);
-                                  //bottom sign in link layout
-                                  CommonAuthRichText(
-                                      text: language(
-                                          context, appFonts.accountCreate),
-                                      subtext:
-                                          language(context, appFonts.signIn),
-                                      onTap: () => route.pop(context));
-                                })
+                            // ButtonCommon(
+                            //     title: language(context, appFonts.signUp),
+                            //     onTap: () async {
+                            //       if (registration.registrationKey.currentState!
+                            //           .validate()) {
+                            //
+                            //         // setState(() {
+                            //         //   isLoading = true; // Set loading state to true
+                            //         // });
+                            //
+                            //
+                            //         final taskData = {
+                            //           "email":
+                            //               "${registration.emailController.text}",
+                            //           "password":
+                            //               "${registration.passwordController.text}",
+                            //           "name":
+                            //               "${registration.firstNameController.text}+${registration.lastNameController.text}",
+                            //           "dob":
+                            //               "${registration.dobController.text}",
+                            //           "gender": registration.gender,
+                            //           "role": "parent",
+                            //           "phoneNumber":
+                            //               "${registration.phoneNumberController.text}",
+                            //           "address1":
+                            //               "${registration.addLine1Controller.text}",
+                            //           "address2":
+                            //               "${registration.addLin2Controller.text}",
+                            //           "address3":
+                            //               "${registration.addLin2Controller.text}",
+                            //           "city":
+                            //               "${registration.cityController.text}",
+                            //           "state":
+                            //               "${registration.stateController.text}",
+                            //           "pinCode":
+                            //               "${registration.pincodeController.text}",
+                            //           "firstName":
+                            //               "${registration.firstNameController.text}",
+                            //           "lastName":
+                            //               "${registration.lastNameController.text}",
+                            //         };
+                            //         await sign_up_method(taskData);
+                            //
+                            //         // setState(() {
+                            //         //   isLoading = false; // Set loading state to false after API call
+                            //         // });
+                            //
+                            //         showDialog(
+                            //           context: context,
+                            //           barrierDismissible: false,
+                            //           builder: (BuildContext context) {
+                            //             Future.delayed(Duration(seconds: 1),
+                            //                 () {
+                            //               Navigator.of(context).pop();
+                            //               if (sign_up_success == true) {
+                            //                 Navigator.of(context).push(
+                            //                     MaterialPageRoute(
+                            //                         builder: (context) =>
+                            //                             EmailSentScreen()));
+                            //               } else {
+                            //                 Fluttertoast.showToast(
+                            //                     msg: "Sign Up Failed",
+                            //                     backgroundColor: Colors.red,
+                            //                     textColor: Colors.white);
+                            //               }
+                            //               setState(() {});
+                            //             });
+                            //             return AlertDialog(
+                            //                 backgroundColor: Colors.yellow,
+                            //                 title: Container(
+                            //                     height: 100,
+                            //                     width: 100,
+                            //                     child: new Center(
+                            //                         child:
+                            //                             CircularPercentIndicator(
+                            //                       radius: 15.0,
+                            //                     ))));
+                            //
+                            //             // Add your playful GIF here                      height: 100,                    ),                    SizedBox(height: 20),                    Text(                      'Loading, please wait...',                      style: TextStyle(                        fontSize: 18,                        fontWeight: FontWeight.bold,                        color: Colors.blue.shade700,                      ),                    ),                    SizedBox(height: 10),                    CircularProgressIndicator(                      valueColor: AlwaysStoppedAnimation<Color>(Colors.orange.shade400),                      strokeWidth: 6,                    ),                  ],                ),              ),          ),      );
+                            //           },
+                            //         );
+                            //       } else {
+                            //
+                            //         Fluttertoast.showToast(
+                            //             msg: "Please fill the required fields",
+                            //             backgroundColor: Colors.red,
+                            //             textColor: Colors.white);
+                            //       }
+                            //
+                            //       const VSpace(Sizes.s30);
+                            //       Image.asset(imageAssets.oR);
+                            //       const VSpace(Sizes.s30);
+                            //       //bottom sign in link layout
+                            //       CommonAuthRichText(
+                            //           text: language(
+                            //               context, appFonts.accountCreate),
+                            //           subtext:
+                            //               language(context, appFonts.signIn),
+                            //           onTap: () => route.pop(context));
+                            //     })
 
                           ]).paddingSymmetric(vertical: Insets.i30)
                         ]).paddingSymmetric(horizontal: Insets.i20),
