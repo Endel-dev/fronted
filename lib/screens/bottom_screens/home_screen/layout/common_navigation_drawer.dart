@@ -1,3 +1,4 @@
+import 'package:piggypaisa/Global_values.dart';
 import 'package:piggypaisa/common/common_path_list.dart';
 import 'package:piggypaisa/plugin_list.dart';
 import '../../../../common/assets/index.dart';
@@ -39,7 +40,7 @@ class CommonNavigationDrawer extends StatelessWidget {
                         decoration: const BoxDecoration(shape: BoxShape.circle),
                         child: Image.asset(imageAssets.profile)),
                     title: Text(
-                        "${language(context, appFonts.hello)} ${language(context, appFonts.nameAgasya)}",
+                        "${language(context, appFonts.hello)} ${language(context, username_dispaly.toString())}",
                         style: appCss.dmPoppinsMedium16
                             .textColor(isThemeColorReturn(context))),
                     //svg icon

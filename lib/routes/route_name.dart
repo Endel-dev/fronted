@@ -3,6 +3,7 @@ class RouteName {
   final String splash ='/';
   final String onBoarding = '/OnBoardingScreen';
   final String login = "/LoginScreen";
+  final String Complete_profile = "/Complete_profile";
   final String registration = "/RegistrationPage";
   final String forgot = "/ForgotScreen";
   final String changePassword = "/CreatePassword";

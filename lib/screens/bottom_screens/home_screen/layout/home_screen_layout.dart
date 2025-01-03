@@ -39,10 +39,10 @@ class HomeScreenLayout extends StatelessWidget {
           const HomeAppBarLayout(),
           const VSpace(Sizes.s25),
           //filter layout
-          CommonWidget().filterLayout(home.searchCtrl, context),
-          const VSpace(Sizes.s25),
+          // CommonWidget().filterLayout(home.searchCtrl, context),
+          // const VSpace(Sizes.s25),
           //banner
-         HomeWidget().banner(context, imageAssets.bannerOne),
+         HomeWidget().banner(context, imageAssets.bannerTwo),
           const VSpace(Sizes.s25)
         ]).paddingSymmetric(horizontal: Insets.i20);
       }

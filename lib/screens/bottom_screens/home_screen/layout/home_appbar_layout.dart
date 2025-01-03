@@ -1,3 +1,5 @@
+import 'package:piggypaisa/Global_values.dart';
+
 import '../../../../config.dart';
 import '../../../../plugin_list.dart';
 import '../../../../config.dart';
@@ -70,18 +72,18 @@ class HomeAppBarLayout extends StatelessWidget {
                                             .appTheme
                                             .primaryColor
                                             .withOpacity(0.34))),
-                            Text(language(context, appFonts.nameAgasya),
+                            Text(language(context, username_dispaly),
                                 style: appCss.dmPoppinsMedium16
                                     .textColor(isThemeColorReturn(context)))
                           ])
                     ]),
                     //notification click event
-                    CommonAppbarButton(
-                        imagePath: isTheme(context)
-                            ? svgAssets.iconTopNotificationWhite
-                            : svgAssets.iconTopNotification,
-                        onPressed: () =>
-                            route.pushNamed(context, routeName.notification))
+                    // CommonAppbarButton(
+                    //     imagePath: isTheme(context)
+                    //         ? svgAssets.iconTopNotificationWhite
+                    //         : svgAssets.iconTopNotification,
+                    //     onPressed: () =>
+                    //         route.pushNamed(context, routeName.notification))
                   ])));
     });
   }

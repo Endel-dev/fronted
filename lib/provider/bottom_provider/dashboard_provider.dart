@@ -78,7 +78,7 @@ class DashboardProvider with ChangeNotifier {
   onTapList(dynamic data, BuildContext context) {
     if (data['title'] == appFonts.pageList ||
         data['title'] == appFonts.setting ||
-        data['title'] == appFonts.logout) {
+        data['title'] == appFonts.logout || data['title'] == appFonts.Complete_profile) {
       route.pushNamed(context, data['route']);
     }
   }

@@ -70,6 +70,7 @@ Future<void> sign_in_method(email, pass) async {
     final String responseString = await response.stream.bytesToString();
     final Map<String, dynamic> dataMap = jsonDecode(responseString);
     List<dynamic> familyId = dataMap['familyId'];
+    print("LOGIN API");
     print(dataMap);
     SharedPreferences pr = await SharedPreferences.getInstance();
     print(dataMap['userId']);
@@ -87,35 +88,6 @@ Future<void> sign_in_method(email, pass) async {
   } else {
     sign_in_success = false;
     print(await response.stream.bytesToString());
-  }
-}
-
-Future<List<String>?> checkEmailSuggestions(String emailPrefix) async {
-
-  final url = 'http://${Host}/suggest-emails?emailPrefix=$emailPrefix';
-
-  try {
-
-    final response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-
-      final responseData = json.decode(response.body);
-
-      if (responseData['status'] == 1) {
-
-        return List<String>.from(responseData['suggestions']);
-
-      } else {
-        return null;
-      }
-    } else {
-      print('Failed to load suggestions: ${response.statusCode}');
-      return null;
-    }
-  } catch (error) {
-    print('Error occurred: $error');
-    return null;
   }
 }
 
@@ -161,52 +133,6 @@ Future<List<String>?> checkEmailSuggestions(String emailPrefix) async {
 //   }
 //
 // }
-
-Future<bool> Create_chid(Map<String, dynamic> data) async {
-  SharedPreferences pr = await SharedPreferences.getInstance();
-  var token = pr.getString("Token");
-  print(token);
-  var headers = {
-    'Authorization': 'Bearer ${token}',
-    'Content-Type': 'application/json'
-  };
-  var request = http.Request('POST', Uri.parse('http://${Host}/create-child'));
-  request.body = json.encode(data);
-  print(json.encode(data));
-  request.headers.addAll(headers);
-
-  http.StreamedResponse response = await request.send();
-
-  if (response.statusCode == 200) {
-    final String responseString = await response.stream.bytesToString();
-    final Map<String, dynamic> dataMap = jsonDecode(responseString);
-    print(dataMap);
-
-    if (dataMap['status'] != 1) {
-      Fluttertoast.showToast(
-          msg: dataMap['message'],
-          backgroundColor: Colors.red,
-          textColor: Colors.white);
-      return false;
-    } else {
-      Fluttertoast.showToast(
-          msg: dataMap['message'],
-          backgroundColor: Colors.green,
-          textColor: Colors.white);
-      return true;
-    }
-  } else {
-    final String responseString = await response.stream.bytesToString();
-    final Map<String, dynamic> dataMap = jsonDecode(responseString);
-    Fluttertoast.showToast(
-        msg: dataMap['message'],
-        backgroundColor: Colors.red,
-        textColor: Colors.white);
-
-    return false;
-  }
-}
-
 Future<bool> Create_task(Map<String, dynamic> data) async {
   SharedPreferences pr = await SharedPreferences.getInstance();
   var token = pr.getString("Token");
@@ -369,13 +295,15 @@ Future<void> Fetch_famalies() async {
   }
 }
 
-Future<void> Forgot_password(var mail, BuildContext context) async {
+Future<void> Forgot_password(var mail,BuildContext context) async {
   try {
     // CircularProgressIndicator();
     var headers = {'Content-Type': 'application/json'};
     var request =
-        http.Request('POST', Uri.parse('http://${Host}/forgot-password'));
-    request.body = json.encode({"email": "${mail}"});
+    http.Request('POST', Uri.parse('http://${Host}/forgot-password'));
+    request.body = json.encode({
+      "email": "${mail}"
+    });
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -395,6 +323,7 @@ Future<void> Forgot_password(var mail, BuildContext context) async {
         print(decodedJson['message']);
         route.pushNamed(context, routeName.login);
       }
+
     } else {
       print(response.reasonPhrase.toString());
       Fluttertoast.showToast(
@@ -402,46 +331,8 @@ Future<void> Forgot_password(var mail, BuildContext context) async {
           backgroundColor: Colors.red,
           textColor: Colors.white);
     }
-  } catch (e) {
+  }catch(e){
     print(e.toString());
-  }
-}
-
-Future<Map<String, dynamic>?> changeChildPassword({
-  required String parentId,
-  required String childId,
-  required String currentPassword,
-  required String newPassword,
-}) async {
-  final url = 'http://${Host}/change-password';
-
-  final body = json.encode({
-    'parentId': parentId,
-    'childId': childId,
-    'currentPassword': currentPassword,
-    'newPassword': newPassword,
-  });
-
-  try {
-    final response = await http.post(
-      Uri.parse(url),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: body,
-    );
-
-    if (response.statusCode == 200) {
-      final responseData = json.decode(response.body);
-
-      return responseData;
-    } else {
-      print('Failed to change password: ${response.statusCode}');
-      return null;
-    }
-  } catch (error) {
-    print('Error occurred: $error');
-    return null;
   }
 }
 

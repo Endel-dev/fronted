@@ -1,3 +1,5 @@
+import 'package:piggypaisa/Backend/APIs.dart';
+import 'package:piggypaisa/Global_values.dart';
 import 'package:piggypaisa/screens/bottom_screens/home_screen/layout/trendfurniture_sublayout_list.dart';
 
 import '../../../../config.dart';
@@ -35,26 +37,38 @@ class TrendFurnitureLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer2<HomeProvider, ThemeService>(
         builder: (context1, home, theme, child) {
-      return Stack(children: [
-        Column(children: [
-          const VSpace(Sizes.s25),
-          //trendFurniture name
-          HomeWidget().listNameCommon(
-              context,language(context, appFonts.trendFurniture)),
-          const VSpace(Sizes.s15),
-          //trendFurniture list and click event
-          ...home.newTrendFurniture
-              .asMap()
-              .entries
-              .map((e) => TrendFurnitureList(
-                    index: e.key,
-                    data: e.value,
-                  ).inkWell(
-                      onTap: () =>
-                          route.pushNamed(context, routeName.chairData)))
-              .toList()
-        ])
-      ]);
+      return FutureBuilder(
+        future: Fetch_famalies(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Stack(children: [
+              Column(children: [
+                const VSpace(Sizes.s25),
+                //trendFurniture name
+                HomeWidget().listNameCommon(
+                    context,language(context, appFonts.trendFurniture)),
+                const VSpace(Sizes.s15),
+                //trendFurniture list and click event
+                TrendFurnitureList(
+                  index: Families.length,
+                  data: Families,
+                )
+              ])
+            ]);
+          }
+          else
+            {
+              return Center(
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+
+        }
+      );
     });
   }
 }

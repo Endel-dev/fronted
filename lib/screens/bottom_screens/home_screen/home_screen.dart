@@ -1,5 +1,4 @@
 import 'package:piggypaisa/common/common_path_list.dart';
-import 'package:piggypaisa/config.dart';
 import '../../../common/extension/spacing.dart';
 import '../../../common/theme/scale.dart';
 import '../../../plugin_list.dart';
@@ -12,12 +11,7 @@ import '../../../provider/theme_provider/theme_service.dart';
 import '../../../routes/index.dart';
 import '../../../widgets/common_statefulwapper.dart';
 import '../../../widgets/direction_page.dart';
-import 'layout/furniture_decor_layout.dart';
-import 'layout/furniture_list_layout.dart';
 import 'layout/home_screen_layout.dart';
-import 'layout/home_widget.dart';
-import 'layout/newarrivals_layout.dart';
-import 'layout/offerzone_layout.dart';
 import 'layout/trendfurniture_layout.dart';
 
 
@@ -27,45 +21,78 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer4<HomeProvider, ThemeService, DashboardProvider,
-            DirectionProvider>(
+        DirectionProvider>(
         builder: (context1, home, theme, dashboard, direction, child) {
-      return StatefulWrapper(
-          onInit: () => Future.delayed(const Duration(milliseconds: 1000))
-              .then((_) => home.onReady()),
-          child: DirectionLayout(
-              dChild: Scaffold(
-                  backgroundColor:
+          return StatefulWrapper(
+              onInit: () => Future.delayed(const Duration(milliseconds: 1000))
+                  .then((_) => home.onReady()),
+              child: DirectionLayout(
+                  dChild: Scaffold(
+                      backgroundColor:
                       appColor(context).appTheme.backGroundColorMain,
-                  body: SafeArea(
-                      child: SingleChildScrollView(
-                          child: Column(
-                              children: [
-                                Text("welcome")
-                    // Home screen top layout
-                    // const HomeScreenLayout(),
-                    // //listview furniture
-                    // const FurnitureListLayout(),
-                    // Column(children: [
-                    //   //newArrival list
-                    //   const NewArrivalLayout(),
-                    //   //trendFurniture list
-                    //   const TrendFurnitureLayout(),
-                    //   const VSpace(Sizes.s10),
-                    //   //bannerlayout
-                    //   HomeWidget().banner(context, imageAssets.bannerTwo),
-                    //   const VSpace(Sizes.s25)
-                    // ]).paddingSymmetric(horizontal: Insets.i20),
-                    // //offerzone Layout
-                    // const OfferZoneLayout(),
-                    // Column(children: [
-                    //   //furniture decore layout
-                    //   const FurnitureDecorLayout(),
-                    //   const VSpace(Sizes.s10),
-                    //   //grid layout bottom home page
-                    //   HomeWidget().bannerSquare(context)
-                    // ]).paddingOnly(
-                    //     left: Insets.i10, right: Insets.i10, bottom: Insets.i20)
-                  ]))))));
-    });
+                      body: SafeArea(
+                          child: SingleChildScrollView(
+                              child: Column(
+                                  children: [
+                                    // Home screen top layout
+                                    const HomeScreenLayout(),
+                                    // //listview furniture
+                                    // const FurnitureListLayout(),
+                                    Column(children: [
+                                      SizedBox(
+                                          height: 120, // Height to fit avatars and names
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: 3,
+                                            itemBuilder: (context, index) {
+                                              // final user = users[index];
+                                              return Padding(
+                                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                                child: Column(
+                                                  children: [
+                                                    // Circle Avatar
+                                                    CircleAvatar(
+                                                      radius: 40,
+                                                      backgroundColor:Colors.grey,
+                                                      child: Icon(Icons.child_care_rounded)
+                                                    ),
+                                                    SizedBox(height: 8),
+                                                    // Name Text
+                                                    Text(
+                                                      "children2",
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        color: Colors.black,
+                                                      ),
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                      ),
+                                      //newArrival list
+                                      // const NewArrivalLayout(),
+                                      //trendFurniture list
+                                      const TrendFurnitureLayout(),
+                                      const VSpace(Sizes.s10),
+                                      //bannerlayout
+                                      // HomeWidget().banner(context, imageAssets.bannerTwo),
+                                      const VSpace(Sizes.s25)
+                                    ]).paddingSymmetric(horizontal: Insets.i20),
+                                    // //offerzone Layout
+                                    // const OfferZoneLayout(),
+                                    // Column(children: [
+                                    //   //furniture decore layout
+                                    //   const FurnitureDecorLayout(),
+                                    //   const VSpace(Sizes.s10),
+                                    //   //grid layout bottom home page
+                                    //   HomeWidget().bannerSquare(context)
+                                    // ]).paddingOnly(
+                                    //     left: Insets.i10, right: Insets.i10, bottom: Insets.i20)
+                                  ]))))));
+        });
   }
 }

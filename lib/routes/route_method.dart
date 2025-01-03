@@ -7,6 +7,7 @@ import 'package:piggypaisa/screens/app_pages_screen/reviews_screen/review_screen
 import 'package:piggypaisa/screens/app_pages_screen/terms_condition_screen/terms_condition_screen.dart';
 import 'package:piggypaisa/screens/auth_screens/forgot_screen/forgot_screen.dart';
 
+import '../Complete_profile.dart';
 import '../config.dart';
 import '../screens/app_pages_screen/chair_screen/chair_screen.dart';
 import '../screens/app_pages_screen/checkout_screen/checkout_screen.dart';
@@ -52,6 +53,7 @@ class AppRoute {
     routeName.onBoarding: (p0) => const OnBoardingScreen(),
     routeName.login: (p0) => const LoginScreen(),
     routeName.registration: (p0) =>  RegistrationPage(),
+    routeName.Complete_profile:(p0) => GettingStartedScreen(),
     routeName.forgot: (p0) => const ForgotScreen(),
     routeName.changePassword: (p0) => const CreatePassword(),
     routeName.otpVerify: (p0) => const OTPScreen(),

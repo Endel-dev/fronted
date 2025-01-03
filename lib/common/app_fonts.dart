@@ -335,6 +335,7 @@ class AppFonts {
   final delivery = "delivery";
   final pageList = "pageList";
   final logout = "logout";
+  final Complete_profile = "Complete Profile";
   final authScreen = "authScreen";
   final onboarding = "onboarding";
   final login = "login";

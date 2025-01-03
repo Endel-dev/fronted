@@ -1067,6 +1067,7 @@ class AppArray {
     {"id": 3, "title": appFonts.pageList,"route":routeName.pageList},
     {"id": 4, "title": appFonts.setting,"route":routeName.setting},
     {"id": 5, "title": appFonts.logout,"route":routeName.login},
+    {"id": 6, "title": appFonts.Complete_profile,"route":routeName.Complete_profile},
   ];
 //help list
   List helpList = [
