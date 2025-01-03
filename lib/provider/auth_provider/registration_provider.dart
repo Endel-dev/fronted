@@ -2,6 +2,7 @@ import '../../config.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationProvider with ChangeNotifier {
+
   GlobalKey<FormState> registrationKey = GlobalKey<FormState>();
 
   TextEditingController firstNameController = TextEditingController();

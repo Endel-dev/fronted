@@ -165,14 +165,20 @@ Future<List<String>?> checkEmailSuggestions(String emailPrefix) async {
 Future<bool> Create_chid(Map<String, dynamic> data) async {
   SharedPreferences pr = await SharedPreferences.getInstance();
   var token = pr.getString("Token");
+
   print(token);
+
   var headers = {
     'Authorization': 'Bearer ${token}',
     'Content-Type': 'application/json'
   };
+
   var request = http.Request('POST', Uri.parse('http://${Host}/create-child'));
+
   request.body = json.encode(data);
+
   print(json.encode(data));
+
   request.headers.addAll(headers);
 
   http.StreamedResponse response = await request.send();
