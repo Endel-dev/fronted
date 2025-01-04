@@ -46,7 +46,7 @@ class TrendFurnitureLayout extends StatelessWidget {
                 const VSpace(Sizes.s25),
                 //trendFurniture name
                 HomeWidget().listNameCommon(
-                    context,language(context, appFonts.trendFurniture)),
+                    context,language(context, "Family Overview")),
                 const VSpace(Sizes.s15),
                 //trendFurniture list and click event
                 TrendFurnitureList(
